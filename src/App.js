@@ -1,9 +1,20 @@
 import React from 'react';
-import './app.scss'
+
+import history from './history';
+import {ConnectedRouter} from 'connected-react-router';
+import { Provider } from 'react-redux';
+import store from './store';
+
+import './app.scss';
+
 
 function App() {
   return (
-    <h1>asdasd</h1>
+    <Provider store={store}>
+      <ConnectedRouter history={history} >
+      <h1>Hello</h1>
+      </ConnectedRouter>
+    </Provider>
   );
 }
 
