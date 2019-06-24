@@ -1,0 +1,56 @@
+@import '../../vars.scss';
+
+.note-container {
+  padding: 0 20px;
+
+  .note-container__item-list{
+    list-style: none;
+
+    .note-container__item{
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      border-radius: 20px;
+      padding: 0 10px;
+
+      .action-icon{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+
+      &:hover{
+        background-color: rgba($color: $item-list-color, $alpha: 0.3);
+      }
+
+      &::after{
+        content: '';
+        position: absolute;
+        height: 1px;
+        width: 95%;
+        background-image: $separation-line;
+      };
+
+      .note-container__item-title{
+        padding: 10px 0;
+        cursor: pointer;
+      }
+
+
+      .note-container__item-tags{
+        padding-bottom: 5px;
+        & i {
+          padding-right: 10px
+        }
+
+        .wrapper-tag{
+          margin-right: 0.5em;
+          padding: 0.2em;
+          border-radius: 5px;
+          background-color: $tag-color;
+        }
+      }
+    }
+
+  }
+}

@@ -1,0 +1,14 @@
+@import '../../vars.scss';
+
+.notes-page {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 600px;
+  border-radius: 20px;
+  background-color: $main-color;
+
+  -webkit-box-shadow: -2px 0px 31px -11px rgba(0,0,0,0.61);
+  -moz-box-shadow: -2px 0px 31px -11px rgba(0,0,0,0.61);
+  box-shadow: -2px 0px 31px -11px rgba(0,0,0,0.61);
+}
