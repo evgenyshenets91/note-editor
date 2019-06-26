@@ -1,0 +1,59 @@
+@import '../../vars.scss';
+
+.note-container{
+  .note-container__item-tags{
+    padding-bottom: 5px;
+    & i {
+      padding-right: 10px
+    }
+
+    .wrapper-tag{
+      margin-right: 0.5em;
+      padding: 0.2em;
+      border-radius: 5px;
+      background-color: $tag-color;
+    }
+  }
+  .editable-container{
+    display: flex;
+    flex-direction: column;
+    padding: 5px 10px;
+    background-color: $tag-color;
+    border-radius: $radius;
+    margin-bottom: 10px;
+    
+  .note-container__item-title{
+    outline: none;
+    padding: 10px 0;
+    & a {
+      text-decoration: none;
+      color: $black
+    }
+  }
+    .note-container__item-text{
+      outline: none;
+      margin-bottom: 10px;
+      &:focus{
+        .item-focus{
+          background-color: goldenrod;
+        }
+      }
+    }
+
+    .note-container_save-button{
+      border-radius: $radius/2;
+      outline: none;
+      border:none;
+      padding: 5px;
+      margin: 5px;
+      align-self: flex-end;
+      box-shadow: $shadow;
+      cursor: pointer;
+      &:active {
+          transform: translateY(1px);
+      }
+    }
+
+
+  }
+}

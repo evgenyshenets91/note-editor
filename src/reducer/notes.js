@@ -1,4 +1,4 @@
-import {FETCH_NOTES_SUCCESS, EDIT_NOTE} from '../constants';
+import {FETCH_NOTES_SUCCESS, EDIT_NOTE, FETCH_NOTE_ID_SUCCESS} from '../constants';
 import * as R from 'ramda';
 
 const initialState = {};
@@ -8,7 +8,11 @@ export default (state = initialState, action) => {
   switch(type){
     case FETCH_NOTES_SUCCESS:
       const newValue = R.indexBy(R.prop('id'), payload)
-      return R.merge(state, newValue);
+      const newNotes = {
+        ...newValue,
+        ...state
+      };
+      return R.merge(state, newNotes);
     case EDIT_NOTE:
       const {noteId, note} = payload;
       const newState = {...state};
@@ -20,6 +24,10 @@ export default (state = initialState, action) => {
         ...newState,
         [noteId] : newNote
       }
+
+    case FETCH_NOTE_ID_SUCCESS:
+      return R.assoc(payload.id, payload, state);
+
     default:
       return state;
   }

@@ -2,7 +2,8 @@
 
 .note-container {
   padding: 0 20px;
-
+  height: 350px;
+  overflow: auto;
   .note-container__item-list{
     list-style: none;
 
@@ -10,19 +11,12 @@
       display: flex;
       justify-content: space-between;
       position: relative;
-      border-radius: 20px;
+      border-radius: $radius;
       padding: 0 10px;
-
-      .action-icon{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
+      div{
+        word-break: break-word;
+        padding: 5px;
       }
-
-      &:hover{
-        background-color: rgba($color: $item-list-color, $alpha: 0.3);
-      }
-
       &::after{
         content: '';
         position: absolute;
@@ -31,11 +25,33 @@
         background-image: $separation-line;
       };
 
+      .action-icon{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+         a{
+          color: $black;
+        }
+
+
+      }
+
+      &:hover{
+        background-color: rgba($color: $item-list-color, $alpha: 0.3);
+      }
+
       .note-container__item-title{
         padding: 10px 0;
         cursor: pointer;
+        & a {
+          text-decoration: none;
+          color: $black
+        }
       }
+      .note-container__item-text{
+        margin-bottom: 10px;
 
+      }
 
       .note-container__item-tags{
         padding-bottom: 5px;

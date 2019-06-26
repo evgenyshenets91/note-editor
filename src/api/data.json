@@ -1,5 +1,5 @@
 {
-  "data": [
+  "data":[
     { "id": "12312",
     "title": "Go to the shop",
     "text": "Buy milk, fish, apple and others",
@@ -17,3 +17,33 @@
     }
   ]
 }
+
+// [
+//   {
+//   "id": "12312",
+//   "title": "Go to the shop",
+//   "text": "Buy milk, fish, apple and others",
+//   "tags": [
+//   "milk",
+//   "fish"
+//   ]
+//   },
+//   {
+//   "id": "23424",
+//   "title": "Good day for a weekend",
+//   "text": "Walk through the park. Go to the zoo. Call best friend",
+//   "tags": [
+//   "park",
+//   "zoo",
+//   "friend"
+//   ]
+//   },
+//   {
+//   "id": "45213",
+//   "title": "Give the keys",
+//   "text": "Make duplicate till monday",
+//   "tags": [
+//   "monday"
+//   ]
+//   }
+//   ]

@@ -6,6 +6,8 @@ import ItemList from '../list-items';
 import EditModal from '../edit-modal';
 
 import './style.scss';
+import Button from '../button';
+import Filter from '../filter';
 
 
 class NotesPage extends Component{ 
@@ -14,8 +16,11 @@ class NotesPage extends Component{
     return (
       <div className='notes-page'>
         <Header /> 
+        <Filter />
         <ItemList />
         {this.props.activeNoteId && <EditModal/>}
+
+        <Button />
       </div>
     );
   }

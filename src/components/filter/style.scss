@@ -1,0 +1,26 @@
+@import '../../vars.scss';
+
+.notes-page{
+  .wrapper-input{
+    display: flex;
+    padding: 10px 30px;
+    position: relative;
+  }
+  .input-search{
+    height: 40px;
+    font-size: 17px;
+    padding: 5px 50px 5px 10px;
+    flex: 1;
+    background-color: transparent;
+    outline: none;
+    border-radius: 20px;
+    border: none;
+    box-shadow: $shadow;
+  }
+  .search{
+    position: absolute;
+    top: 15px;
+    right: 45px;
+    font-size: 30px;
+  }
+}

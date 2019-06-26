@@ -34,11 +34,6 @@ class EditModal extends PureComponent{
     this.props.setActiveNote(null);
   }
 
-  onCancel = (e) => {
-    e.preventDefault();
-    this.props.setActiveNote(null);
-  }
-
   onChange = (fieldName) => (e) => {
     this.setState({
       ...this.state,
@@ -47,14 +42,29 @@ class EditModal extends PureComponent{
   }
 
   render(){
-    console.log(this.props.note)
     return (
-      <div>
-        <form onSubmit={this.onSubmit}>
-          <input type='text' onChange={this.onChange('title')} value={this.state.title}/>
-          <input type='text' onChange={this.onChange('text')} value={this.state.text}/>
+      <div className='form-wrapper'>
+        <form onSubmit={this.onSubmit}
+              className='form-wrapper__modal'
+        >
+          <label>
+            Title:
+          <input className='form-wrapper_input-title' 
+                 type='text' 
+                 onChange={this.onChange('title')} 
+                 value={this.state.title} 
+          />
+          </label>
+          <label>
+            Text:
+          <textarea className='form-wrapper_input-text' 
+                 type='textarea' 
+                 onChange={this.onChange('text')} 
+                 value={this.state.text}
+          />
+          </label>
+
           <button type="submit">Save</button>
-          <button onClick={this.onCancel}>Cancel</button>
         </form>
       </div>
     );

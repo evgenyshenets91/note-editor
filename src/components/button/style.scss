@@ -1,0 +1,30 @@
+@import '../../vars.scss';
+
+.notes-page{
+  .button-container{
+    margin-bottom: 40px;
+    margin-top: auto;
+    align-self: center;
+    & button{
+      display: inline-block;
+      font-size: 1rem;
+      color: wheat;
+      padding: 8px 15px;
+      width: 200px;
+      height: 40px;
+      border: none;
+      outline: none;
+      background-color: #48a55d;
+      border-radius: $radius;
+      box-shadow: $shadow;
+      cursor: pointer;
+      &:active {
+          transform: translateY(1px);
+      }
+      &:hover {
+        border-color: currentColor;
+        background-color: #459457;
+     }
+    }
+  }
+}
