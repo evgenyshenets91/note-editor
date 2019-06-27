@@ -3,13 +3,25 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchNoteId, fetchData, editNote, setActiveNote } from '../../actions/'; 
 import { getNotesById } from '../../helpers/';
-import {Link, withRouter}  from 'react-router-dom';
+import {withRouter}  from 'react-router-dom';
 import ContentEditable from 'react-contenteditable';
+import * as R from 'ramda';
 
 import './style.scss';
-import Button from '../button';
+import ButtonSimple from '../button-simple';
 
 class Item extends Component {
+
+  static propTypes = {
+    findedTags: PropTypes.string,
+    allTags: PropTypes.arrayOf(PropTypes.string),
+    uniqueTags: PropTypes.arrayOf(PropTypes.string),
+    fieldName: PropTypes.string,
+    activeNoteId: PropTypes.string,
+    arrSplite: PropTypes.func,
+    note: PropTypes.object
+
+  }
 
   static defaultProps = {
     note: {
@@ -20,6 +32,7 @@ class Item extends Component {
   }
 
   state = {
+    id: this.props.note.id,
     title: this.props.note.title,
     text: this.props.note.text,
     tags: this.props.note.tags
@@ -54,7 +67,7 @@ class Item extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    const {text, tags, title, id} = nextProps.note;
+    const {text, tags, title} = nextProps.note;
     if(this.state !== nextProps.note) {
       this.setState({
         text, title, tags
@@ -64,18 +77,19 @@ class Item extends Component {
 
   componentDidMount(){
     const {params: {id}} = this.props.match;
+    if(R.isEmpty(this.props.notes)) {
       this.props.fetchNoteId(id);
-    
- 
-
-    this.setState({
-      title: this.props.note.title,
-      text: this.props.note.text,
-      tags: this.props.note.tags
-    })
-
-    // this.props.editNote(id, this.state)
+      this.setState({
+        id: this.props.note.id,
+        title: this.props.note.title,
+        text: this.props.note.text,
+        tags: this.props.note.tags
+      })
+    }
+    this.props.setActiveNote(id)
+    this.arrSplite()
   }
+
 
 
   arrSplite = () => {
@@ -94,17 +108,12 @@ class Item extends Component {
     })
   }
 
-  onEdit = (id) => () => {
-    this.props.setActiveNote(id)
-  }
-
   render(){
-    console.log(this.state.text)
     const {note} = this.props;
     const tagsValue = note.tags.map((tag, i) => <span className='wrapper-tag' key={i}>{tag}</span>)
-    const isEmpty = this.state.tags.length !== 0 ? tagsValue : 'No tags';
+    const isEmpty = this.state.tags.length !== 0 ? tagsValue : null;
 
-    return note? (
+    return note ? (
       <section className='note-container'>
         <div className='editable-container'>
           <ContentEditable className='note-container__item-title'
@@ -118,12 +127,11 @@ class Item extends Component {
                            tagName='p'
   
           />
-          <button className='note-container_save-button'
-                  onClick={this.onSubmit}
-                  type='submit'
+          <ButtonSimple onSubmit={this.onSubmit}
+                        type='submit'
           >
             Save
-          </button>
+          </ButtonSimple>
         </div>
 
         <p className='note-container__item-tags'>        
@@ -138,8 +146,10 @@ class Item extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state.notes)
   return {
-    note: getNotesById(state, state.notePage.id)
+    notes: state.notes,
+    note: getNotesById(state, state.notesPage.activeNoteId)
   }
 }
 

@@ -32,4 +32,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {})(NotesPage)
+export default connect(mapStateToProps, null)(NotesPage)

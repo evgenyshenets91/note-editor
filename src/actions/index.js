@@ -12,7 +12,6 @@ import {
   CREATE_NEW_NOTE
 } from '../constants';
 import { fetchNotes, loadfetchNoteId } from '../api/';
-import * as R from 'ramda';
 
 export const fetchData = () => async (dispatch) => {
   dispatch({type: FETCH_NOTES_START})

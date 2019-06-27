@@ -17,7 +17,8 @@
       top: 50%;
       left: 50%;
       background-color: $modal-color;
-      border-radius: $radius;
+      border-top-left-radius:$radius;
+      border-bottom-right-radius:$radius;
       box-shadow: $shadow;
       transform: translate(-50%, -50%);
       animation-duration: 0.55s;  
@@ -28,6 +29,17 @@
         button{
           background-color: $button-submit;
           color: $black;
+          position: relative;
+        }
+      }
+      .close{
+        position: absolute;
+        top: 1px;
+        right: 1px;
+        font-size: 21px;
+        cursor: pointer;
+        &:active{
+          transform: translateY(1px);
         }
       }
       & label{

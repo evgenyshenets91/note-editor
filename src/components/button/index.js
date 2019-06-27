@@ -1,9 +1,16 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types'
 
 import './style.scss';
 import EditModal from '../edit-modal';
 
 class Button extends Component{
+
+  static propTypes = {
+    toggleOpen: PropTypes.func,
+    isOpen: PropTypes.bool
+  }
+
   state = {
     isOpen: false
   }

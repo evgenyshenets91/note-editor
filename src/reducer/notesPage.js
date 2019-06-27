@@ -23,7 +23,6 @@ export default (state = initialState, {type, payload}) => {
       return R.merge(state, {filter: payload})
 
     case CREATE_NEW_NOTE:
-      console.log(payload.id)
       return R.merge(state, {ids: R.concat(state.ids, [payload.id])})
 
     default: 

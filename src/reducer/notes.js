@@ -18,7 +18,8 @@ export default (state = initialState, action) => {
       const newState = {...state};
       const newNote = {
         ...newState[noteId],
-       ...note
+       ...note,
+       id: noteId
       };
       return {
         ...newState,

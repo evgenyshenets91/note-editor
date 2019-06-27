@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { searchFilter } from '../../actions'
+import { searchFilter } from '../../actions';
 
 
 import './style.scss'
 
 class Filter extends Component {
   static propTypes = {
-    value: PropTypes.string
+    value: PropTypes.string,
+    searchFilter: PropTypes.func
   }
 
   state = {
@@ -25,7 +26,8 @@ class Filter extends Component {
   render() {
     return (
       <div className='wrapper-input'>
-        <input className='input-search' type='text' 
+        <input className='input-search' 
+               type='text' 
                onChange={this.handleChange}  
                value={this.state.value}      
         />

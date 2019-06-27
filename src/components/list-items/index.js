@@ -12,12 +12,11 @@ class ItemList extends Component {
     this.props.fetchData();
   }
 
-  // onEdit = (id) => () => {
-  //   this.props.setActiveNote(id)
-  // }
+  activeNote = (id) => () => {
+    this.props.setActiveNote(id)
+  }
 
   render(){
-    console.log(this.props.notes)
     const renderItems = this.props.notes.map(item => {
       const {id, text, title, tags} = item;
       return(
@@ -26,11 +25,15 @@ class ItemList extends Component {
         >
           <div>
           <h2 className='note-container__item-title'>
-            <Link to={`/note/${id}`}>
+            <Link to={`/note/${id}`}
+                  onClick={this.activeNote(id)}
+            >
               {title}   
             </Link>       
           </h2>
-          <p className='note-container__item-text' dangerouslySetInnerHTML={{__html: text}} />
+          <p className='note-container__item-text' 
+             dangerouslySetInnerHTML={{__html: text}} 
+          />
           <p className='note-container__item-tags'>
             <i className="fas fa-hashtag" />
             {tags.map((tag, i) => <span className='wrapper-tag' key={i}>{tag}</span>)}
@@ -39,10 +42,11 @@ class ItemList extends Component {
           <div className='action-icon'>
             <span onClick={() => this.props.deleteItem(id)}> 
             <i className="far fa-trash-alt" 
-                
             />
             </span>
-            <Link to={`/note/${id}`}>
+            <Link to={`/note/${id}`}
+                  onClick={this.activeNote(id)}
+            >
               <i className="far fa-edit" />
             </Link>
           </div>
@@ -61,7 +65,6 @@ class ItemList extends Component {
 }
 
 const mapStateToProps = state => {
-
   return {
     notes: getNotes(state)
   }

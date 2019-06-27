@@ -1,17 +1,28 @@
 import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setActiveNote, editNote, createNote } from '../../actions/'; 
 
 import './style.scss';
-import Button from '../button';
+import ButtonSimple from '../button-simple';
 
 
 class EditModal extends PureComponent{ 
+  
+  static propTypes = {
+    findedTags: PropTypes.string,
+    allTags: PropTypes.arrayOf(PropTypes.string),
+    uniqueTags: PropTypes.arrayOf(PropTypes.string),
+    fieldName: PropTypes.string,
+    createNote: PropTypes.func
+
+  }
+
   state = {
     id: null,
     title: '',
     text: '',
-    tags: ''
+    tags: []
   }
 
   onSubmit = (e) => {
@@ -73,13 +84,12 @@ class EditModal extends PureComponent{
                  value={this.state.text}
           />
           </label>
-
-          <button type="submit">Save</button>
-          <button type="text"
-                  onClick={toggleOpen}
-          >
-            Cancel
-          </button>
+          <ButtonSimple type="submit">
+            Save
+          </ButtonSimple>
+          <i className="far fa-times-circle close"
+             onClick={toggleOpen}
+          />
         </form>
       </div>
     );

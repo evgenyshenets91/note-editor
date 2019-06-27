@@ -39,20 +39,16 @@
         }
       }
     }
-
-    .note-container_save-button{
-      border-radius: $radius/2;
-      outline: none;
-      border:none;
-      padding: 5px;
-      margin: 5px;
+    .button-container{
+      margin-bottom: 0px;
       align-self: flex-end;
-      box-shadow: $shadow;
-      cursor: pointer;
-      &:active {
-          transform: translateY(1px);
+      button{
+        box-shadow: none;
+        width: 70px;
       }
     }
+
+
 
 
   }
