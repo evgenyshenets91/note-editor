@@ -1,4 +1,4 @@
-import {FETCH_NOTES_SUCCESS, SET_ACTIVE_NOTE, DELETE_ITEM, SEARCH_FILTER} from '../constants';
+import {FETCH_NOTES_SUCCESS, SET_ACTIVE_NOTE, DELETE_ITEM, SEARCH_FILTER, CREATE_NEW_NOTE} from '../constants';
 import * as R from 'ramda';
 
 const initialState = {
@@ -21,6 +21,10 @@ export default (state = initialState, {type, payload}) => {
       return newId;
     case SEARCH_FILTER:
       return R.merge(state, {filter: payload})
+
+    case CREATE_NEW_NOTE:
+      console.log(payload.id)
+      return R.merge(state, {ids: R.concat(state.ids, [payload.id])})
 
     default: 
       return state;

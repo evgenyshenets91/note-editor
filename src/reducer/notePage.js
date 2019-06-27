@@ -1,4 +1,4 @@
-import {FETCH_NOTE_ID_SUCCESS} from '../constants';
+import {FETCH_NOTE_ID_SUCCESS, CREATE_NEW_NOTE} from '../constants';
 import * as R from 'ramda';
 
 const initialState = {

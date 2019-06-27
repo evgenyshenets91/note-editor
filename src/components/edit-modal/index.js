@@ -1,15 +1,17 @@
 import React, {PureComponent} from 'react';
 import { connect } from 'react-redux';
-import { setActiveNote, editNote } from '../../actions/'; 
+import { setActiveNote, editNote, createNote } from '../../actions/'; 
 
 import './style.scss';
+import Button from '../button';
 
 
 class EditModal extends PureComponent{ 
   state = {
-    title: this.props.note.title,
-    text: this.props.note.text,
-    tags: this.props.note.tags
+    id: null,
+    title: '',
+    text: '',
+    tags: ''
   }
 
   onSubmit = (e) => {
@@ -24,14 +26,21 @@ class EditModal extends PureComponent{
 
     this.setState({
       ...this.state,
+      id: (Date.now() + Math.random()).toString(),
       tags:  uniqueTags.filter(tag => this.state.text.indexOf(tag) >= 0),
       text: this.state.text.replace(/#/g, '')
-    }, this.editNote)
+    }, this.createNote)
   }
 
-  editNote = () => {
-    this.props.editNote(this.props.activeNoteId, this.state);
-    this.props.setActiveNote(null);
+  createNote = () => {
+    this.props.createNote(this.state)
+    this.setState({
+      id: null,
+      title: '',
+      text: '',
+      tags: ''
+    });
+    this.props.toggleOpen();
   }
 
   onChange = (fieldName) => (e) => {
@@ -42,6 +51,7 @@ class EditModal extends PureComponent{
   }
 
   render(){
+    const {toggleOpen} = this.props;
     return (
       <div className='form-wrapper'>
         <form onSubmit={this.onSubmit}
@@ -65,6 +75,11 @@ class EditModal extends PureComponent{
           </label>
 
           <button type="submit">Save</button>
+          <button type="text"
+                  onClick={toggleOpen}
+          >
+            Cancel
+          </button>
         </form>
       </div>
     );
@@ -78,4 +93,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {setActiveNote, editNote})(EditModal)
+export default connect(mapStateToProps, {setActiveNote, editNote, createNote})(EditModal)

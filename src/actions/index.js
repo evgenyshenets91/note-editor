@@ -8,7 +8,8 @@ import {
   FETCH_NOTE_ID_SUCCESS,
   FETCH_NOTE_ID_FAILURE,
   DELETE_ITEM,
-  SEARCH_FILTER
+  SEARCH_FILTER,
+  CREATE_NEW_NOTE
 } from '../constants';
 import { fetchNotes, loadfetchNoteId } from '../api/';
 import * as R from 'ramda';
@@ -43,7 +44,6 @@ export const editNote = (noteId, note) => ({
 })
 
 export const fetchNoteId = id => async (dispatch, getState) => {
-  console.log(getState())
 
     dispatch({type: FETCH_NOTE_ID_START})
     try{
@@ -71,4 +71,9 @@ export const deleteItem = (id) => ({
 export const searchFilter = (value) => ({
   type: SEARCH_FILTER,
   payload: value
+})
+
+export const createNote = (note) => ({
+  type: CREATE_NEW_NOTE,
+  payload: note
 })

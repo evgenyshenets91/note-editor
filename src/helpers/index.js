@@ -6,18 +6,16 @@ export const getNotes = state => {
 
 
 
-  const filteredMap =  R.compose(
+  const notesInArray =  R.compose(
     R.map(id => getNotesById(state, id))   
   )(state.notesPage.ids); 
 
 
-  const mapa = filteredMap.filter(el => {
-    const {id, text, title, tags} = el;
-    if(tags.includes(state.notesPage.filter)){
-       return el
-    }
-  })
-  console.log(mapa)
-  return state.notesPage.filter == '' ? filteredMap : mapa
-  
+  const filteredNotes = notesInArray.filter(el => {
+    const {tags, ...rest} = el;
+    return  tags.some(item => item.includes(state.notesPage.filter)) ? el : null;
+    })
+    return state.notesPage.filter == '' ? notesInArray : filteredNotes
   }
+
+  

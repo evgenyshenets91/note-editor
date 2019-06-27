@@ -1,4 +1,4 @@
-import {FETCH_NOTES_SUCCESS, EDIT_NOTE, FETCH_NOTE_ID_SUCCESS} from '../constants';
+import {FETCH_NOTES_SUCCESS, EDIT_NOTE, FETCH_NOTE_ID_SUCCESS, CREATE_NEW_NOTE} from '../constants';
 import * as R from 'ramda';
 
 const initialState = {};
@@ -27,6 +27,13 @@ export default (state = initialState, action) => {
 
     case FETCH_NOTE_ID_SUCCESS:
       return R.assoc(payload.id, payload, state);
+
+    case CREATE_NEW_NOTE:
+      const newItem = {
+        ...state,
+        [payload.id]: payload
+      }
+      return newItem;
 
     default:
       return state;

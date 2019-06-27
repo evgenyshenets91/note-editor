@@ -12,3 +12,5 @@ export const EDIT_NOTE = 'EDIT_NOTE';
 export const DELETE_ITEM = 'DELETE_ITEM';
 
 export const SEARCH_FILTER = 'SEARCH_FILTER';
+
+export const CREATE_NEW_NOTE = 'CREATE_NEW_NOTE';

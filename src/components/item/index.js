@@ -68,11 +68,11 @@ class Item extends Component {
     
  
 
-    // this.setState({
-    //   title: this.props.note.title,
-    //   text: this.props.note.text,
-    //   tags: this.props.note.tags
-    // })
+    this.setState({
+      title: this.props.note.title,
+      text: this.props.note.text,
+      tags: this.props.note.tags
+    })
 
     // this.props.editNote(id, this.state)
   }
@@ -90,7 +90,7 @@ class Item extends Component {
     })
     this.setState({
       ...this.state,
-      text: newText.join(" ").split(".</span>").join("</span>.&nbsp")
+      text: newText.join("")
     })
   }
 
@@ -99,7 +99,7 @@ class Item extends Component {
   }
 
   render(){
-
+    console.log(this.state.text)
     const {note} = this.props;
     const tagsValue = note.tags.map((tag, i) => <span className='wrapper-tag' key={i}>{tag}</span>)
     const isEmpty = this.state.tags.length !== 0 ? tagsValue : 'No tags';
@@ -108,14 +108,14 @@ class Item extends Component {
       <section className='note-container'>
         <div className='editable-container'>
           <ContentEditable className='note-container__item-title'
-                          tagName='h2'
-                          html={this.state.title /*=== '' ? this.arrSplite() : this.state.title*/}
-                          onChange={this.onChange('title')}
+                           tagName='h2'
+                           html={this.state.title}
+                           onChange={this.onChange('title')}
           />
-          <ContentEditable html={this.state.text /*=== '' ? this.arrSplite() : this.state.text*/}
-                          onChange={this.onChange('text')}
-                          className='note-container__item-text'
-                          tagName='p'
+          <ContentEditable html={this.state.text}
+                           onChange={this.onChange('text')}
+                           className='note-container__item-text'
+                           tagName='p'
   
           />
           <button className='note-container_save-button'

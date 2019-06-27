@@ -8,11 +8,6 @@ import './style.scss'
 
 class ItemList extends Component {
 
-  static defaultProps = {
-    filter: ''
-  }
-
-
   componentDidMount(){
     this.props.fetchData();
   }
@@ -35,7 +30,7 @@ class ItemList extends Component {
               {title}   
             </Link>       
           </h2>
-          <p className='note-container__item-text'>{text}</p>
+          <p className='note-container__item-text' dangerouslySetInnerHTML={{__html: text}} />
           <p className='note-container__item-tags'>
             <i className="fas fa-hashtag" />
             {tags.map((tag, i) => <span className='wrapper-tag' key={i}>{tag}</span>)}
